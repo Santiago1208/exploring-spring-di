@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Get Receipt</title>
+</head>
+<body>
+	<h1 th:text="${title}"></h1>
+	<h3 th:text="${receipt.description}"></h3>
+	<div>
+		Client: <span th:text="${receipt.client.name + ' ' + receipt.client.surname}"></span>
+	</div>
+	<h4>Receipt detail</h4>
+	<table>
+		<thead>
+			<tr>
+				<td>Product</td>
+				<td>Price</td>
+				<td>Quantity</td>
+				<td>Total</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${receipt.items}">
+				<td th:text="${item.product.name}"></td>
+				<td th:text="${item.product.price}"></td>
+				<td th:text="${item.quantity}"></td>
+				<td th:text="${item.calculateTotal()}"></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
